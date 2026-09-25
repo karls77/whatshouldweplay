@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>What Should We Play?</title>
+  <meta name="description" content="Pick a game from the collection for your group and your time.">
+  <meta name="theme-color" content="#2f5d50">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <header>
+    <h1>What should we play?</h1>
+    <p id="subtitle" class="muted">Loading collection…</p>
+  </header>
+
+  <main>
+    <form id="criteria" autocomplete="off">
+      <div class="field">
+        <label for="players">Players</label>
+        <div class="stepper">
+          <button type="button" data-step="-1" aria-label="Fewer players">−</button>
+          <input id="players" name="players" type="number" inputmode="numeric" min="1" max="20" value="4">
+          <button type="button" data-step="1" aria-label="More players">+</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="minutes">Time we have</label>
+        <select id="minutes" name="minutes">
+          <option value="20">20 min</option>
+          <option value="30">30 min</option>
+          <option value="45">45 min</option>
+          <option value="60">1 hour</option>
+          <option value="90" selected>1½ hours</option>
+          <option value="120">2 hours</option>
+          <option value="180">3 hours</option>
+          <option value="240">4 hours</option>
+          <option value="">All day</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="fit">Player count</label>
+        <select id="fit" name="fit">
+          <option value="recommended">Recommended</option>
+          <option value="best">Best only</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="maxWeight">Complexity</label>
+        <select id="maxWeight" name="maxWeight">
+          <option value="">Any</option>
+          <option value="2">Light (≤ 2)</option>
+          <option value="3">Up to medium (≤ 3)</option>
+          <option value="4">Up to heavy (≤ 4)</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="sort">Sort by</label>
+        <select id="sort" name="sort">
+          <option value="fit">Best match</option>
+          <option value="rating">BGG rating</option>
+          <option value="myRating">My rating</option>
+          <option value="leastPlayed">Least played</option>
+          <option value="shortest">Shortest</option>
+          <option value="name">Name</option>
+        </select>
+      </div>
+
+      <label class="check">
+        <input id="allowLong" name="allowLong" type="checkbox">
+        Include games that might run long
+      </label>
+
+      <button id="pick" type="button" class="primary">🎲 Pick one for us</button>
+    </form>
+
+    <section id="pick-result" hidden></section>
+
+    <p id="count" class="muted" aria-live="polite"></p>
+    <ol id="results"></ol>
+  </main>
+
+  <footer class="muted">
+    Data from <a href="https://boardgamegeek.com" rel="noopener">BoardGameGeek</a>.
+    Player-count fit is from BGG's community poll: games where most voters say
+    “not recommended” for your group size are left out.
+  </footer>
+</body>
+</html>
